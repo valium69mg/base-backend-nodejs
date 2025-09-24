@@ -9,6 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(morgan('dev'));
 
+// Initialize DB
 initDatabase()
   .then(() => {
     return getPool().getConnection();
@@ -16,6 +17,10 @@ initDatabase()
   .then(conn => {
     console.log(`DB connected at ${process.env.DB_HOST}:${process.env.DB_PORT}`);
     conn.release();
+
+    // user routes
+    const userRoutes = require('./routes/userRoutes');
+    app.use('/api/users', userRoutes);
 
     app.listen(PORT, () => {
       console.log(`Server running at http://localhost:${PORT}`);
