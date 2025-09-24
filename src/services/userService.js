@@ -39,10 +39,19 @@ class UserService {
     }
 
     async updateUserPassword(id, password) {
+
+        const existingUser = await this.userRepository.getUserById(id);
+        if (existingUser === null) { // user does not exists
+            return {status: 400, message: "User does not exists"};
+        }
+
         const hashedPassword = await bcrypt.hash(password, saltRounds);
         password = hashedPassword;
         let success = await this.userRepository.updateUserPassword(id, password);
-        return success;
+        if (success) {
+            return {status: 200, message: "Password updated succesfully"};
+        }
+        return {status: 500, message: "Password could not be updated"};
     }
 
     async getAllUsers() {

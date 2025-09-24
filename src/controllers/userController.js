@@ -40,13 +40,10 @@ class UserController {
             const body = req.body;
             const id = req.params.id;
 
-            const success = await this.userService.updateUserPassword(id, body.password);
+            const response = await this.userService.updateUserPassword(id, body.password);
 
-            if (success) {
-                return res.status(201).json({ message: 'User password updated successfully' });
-            } else {
-                return res.status(400).json({ message: 'User password update failed' });
-            }
+            return res.status(response.status).json(response);
+
         } catch (error) {
             console.error('Error:', error);
             return res.status(500).json({ message: 'Internal server error' });
