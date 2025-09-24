@@ -25,6 +25,7 @@ A starter project to build a REST API with Node.js, Express, and MySQL, implemen
 - Basic error handling and responses.
 - Dependency injection example for repositories and services.
 - Singleton pattern for repositories, services, controllers and more.
+- Managing database migrations with knex
 
 ---
 
