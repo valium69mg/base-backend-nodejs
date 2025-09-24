@@ -1,0 +1,27 @@
+require('dotenv').config({ path: '../.env' });
+const express = require('express');
+const morgan = require('morgan');
+const { initDatabase, getPool } = require('../config/database');
+
+const PORT = process.env.PORT;
+const app = express();
+
+app.use(express.json());
+app.use(morgan('dev'));
+
+initDatabase()
+  .then(() => {
+    return getPool().getConnection();
+  })
+  .then(conn => {
+    console.log(`DB connected at ${process.env.DB_HOST}:${process.env.DB_PORT}`);
+    conn.release();
+
+    app.listen(PORT, () => {
+      console.log(`Server running at http://localhost:${PORT}`);
+    });
+  })
+  .catch(err => {
+    console.error('Error connecting to DB:', err.message);
+    process.exit(1);
+  });
