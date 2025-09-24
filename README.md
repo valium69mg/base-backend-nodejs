@@ -25,7 +25,8 @@ A starter project to build a REST API with Node.js, Express, and MySQL, implemen
 - Basic error handling and responses.
 - Dependency injection example for repositories and services.
 - Singleton pattern for repositories, services, controllers and more.
-- Managing database migrations with knex
+- Managing database migrations with knex.
+- Authentication via JWT Tokens.
 
 ---
 
@@ -41,3 +42,5 @@ Example `.env` file for starters (on same level as src/):
 - DB_USER=root
 - DB_PASSWORD=admin
 - DB_NAME=yourdbname
+- JWT_SECRET=yoursecret
+- JWT_EXPIRES_IN=1h
