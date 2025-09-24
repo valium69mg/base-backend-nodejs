@@ -32,11 +32,11 @@ A starter project to build a REST API with Node.js, Express, and MySQL, implemen
 
 The project uses a `.env` file to configure sensitive variables and connection parameters.
 
-Example `.env` file for starters:
+Example `.env` file for starters (on same level as src/):
 
-PORT=8000
-DB_HOST=localhost
-DB_PORT=3306
-DB_USER=root
-DB_PASSWORD=admin
-DB_NAME=yourdbname
+- PORT=8000
+- DB_HOST=localhost
+- DB_PORT=3306
+- DB_USER=root
+- DB_PASSWORD=admin
+- DB_NAME=yourdbname
