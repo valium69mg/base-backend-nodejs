@@ -10,7 +10,7 @@ A starter project to build a REST API with Node.js, Express, and MySQL, implemen
 - **src/routes/**: API route definitions.
 - **src/controllers/**: Controllers that handle requests and call services.
 - **src/services/**: Business logic and processing.
-- **src/repositories/**: Database access layer.
+- **src/models/**: Database access layer.
 - **utils/**: General utilities (e.g., common helper functions).
 - **app.js**: Entry point that initializes the app, database, and routes.
 
