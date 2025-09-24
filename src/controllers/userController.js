@@ -17,7 +17,7 @@ class UserController {
 
         } catch (error) {
             console.error('Error:', error);
-            return res.status(500).json({ message: 'Internal server error' });
+            return res.status(500).json({status: 500, message: 'Internal server error' });
         }
     }
 
@@ -31,7 +31,7 @@ class UserController {
   
         } catch (error) {
             console.error('Error:', error);
-            return res.status(500).json({ message: 'Internal server error' });
+            return res.status(500).json({status:500, message: 'Internal server error' });
         }
     }
 
@@ -46,7 +46,7 @@ class UserController {
 
         } catch (error) {
             console.error('Error:', error);
-            return res.status(500).json({ message: 'Internal server error' });
+            return res.status(500).json({status:500, message: 'Internal server error' });
         }
     }
 
@@ -61,7 +61,7 @@ class UserController {
             }
         } catch (error) {
             console.error('Error:', error);
-            return res.status(500).json({ message: 'Internal server error' });
+            return res.status(500).json({status: 500, message: 'Internal server error' });
         }
     }
 
@@ -79,7 +79,7 @@ class UserController {
             }
         } catch (error) {
             console.error('Error:', error);
-            return res.status(500).json({ message: 'Internal server error' });
+            return res.status(500).json({status: 500, message: 'Internal server error' });
         }
     }
 
@@ -94,7 +94,7 @@ class UserController {
         
         } catch (error) {
             console.error('Error:', error);
-            return res.status(500).json({ message: 'Internal server error' });
+            return res.status(500).json({status: 500,  message: 'Internal server error' });
         }
     }
 }

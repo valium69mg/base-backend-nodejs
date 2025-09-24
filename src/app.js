@@ -18,6 +18,10 @@ initDatabase()
     console.log(`DB connected at ${process.env.DB_HOST}:${process.env.DB_PORT}`);
     conn.release();
 
+    // auth routes
+    const authRoutes = require('./routes/authRoutes');
+    app.use('/api/auth', authRoutes);
+
     // user routes
     const userRoutes = require('./routes/userRoutes');
     app.use('/api/users', userRoutes);
