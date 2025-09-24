@@ -29,10 +29,13 @@ class UserService {
     async updateUser(user) {
         const existingUser = await this.userRepository.getUserByEmail(user.email);
         if (existingUser != null && user.id != existingUser.id) { // user exists and is not the same
-            return false;
+            return {status: 400, message: "User already exists"};
         }
         let success = await this.userRepository.updateUser(user);
-        return success;
+        if (success) {
+            return {status: 200, message: "User updated succesfully"};
+        }
+        return {status: 500, message: "User could not be updated"};
     }
 
     async updateUserPassword(id, password) {

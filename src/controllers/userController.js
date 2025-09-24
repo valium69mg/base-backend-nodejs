@@ -25,13 +25,10 @@ class UserController {
         try {
             const userData = req.body;
 
-            const success = await this.userService.updateUser(userData);
+            const response = await this.userService.updateUser(userData);
 
-            if (success) {
-                return res.status(201).json({ message: 'User updated successfully' });
-            } else {
-                return res.status(400).json({ message: 'User update failed' });
-            }
+            return res.status(response.status).json(response);
+  
         } catch (error) {
             console.error('Error:', error);
             return res.status(500).json({ message: 'Internal server error' });
