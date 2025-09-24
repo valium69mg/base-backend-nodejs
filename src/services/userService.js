@@ -12,6 +12,10 @@ class UserService {
     }
 
     async createUser(user) {
+        const existingUser = await this.userRepository.getUserByEmail(user.email);
+        if (existingUser != null) { // user exists
+            return false;
+        }
         const hashedPassword = await bcrypt.hash(user.password, saltRounds);
         user.password = hashedPassword;
         user.createdAt = new Date();
@@ -20,7 +24,18 @@ class UserService {
     }
 
     async updateUser(user) {
+        const existingUser = await this.userRepository.getUserByEmail(user.email);
+        if (existingUser != null && user.id != existingUser.id) { // user exists and is not the same
+            return false;
+        }
         let success = await this.userRepository.updateUser(user);
+        return success;
+    }
+
+    async updateUserPassword(id, password) {
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
+        password = hashedPassword;
+        let success = await this.userRepository.updateUserPassword(id, password);
         return success;
     }
 

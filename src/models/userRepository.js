@@ -29,6 +29,11 @@ class UserRepository {
         return querySuccess(result.affectedRows);
     }
 
+    async updateUserPassword(id, password) {
+        const [result] = await this.pool.query(`UPDATE users SET password = ? WHERE id = ?
+            `, [password, id]);
+        return querySuccess(result.affectedRows);
+    }
 
     async getAllUsers() {
         const [rows] = await this.pool.query("SELECT * FROM users");
@@ -37,7 +42,18 @@ class UserRepository {
 
     async getUserById(id) {
         const [rows] = await this.pool.query("SELECT * from users WHERE id = ?", [id])
-        return rows[0] || null;
+        if (rows.length === 0) {
+            return null;
+        }
+        return rows[0];
+    }
+
+    async getUserByEmail(email) {
+        const [rows] = await this.pool.query("SELECT * from users WHERE email = ?", [email])
+        if (rows.length === 0) {
+            return null;
+        }
+        return rows[0];
     }
 
     async deleteUserById(id) {

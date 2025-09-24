@@ -12,6 +12,7 @@ const userController = new UserController(userService);
 
 router.post('/', (req, res) => userController.register(req, res));
 router.put('/', (req, res) => userController.update(req, res));
+router.put('/password/:id', (req, res) => userController.updateUserPassword(req, res));
 router.get('/all', (req, res) => userController.getAllUsers(req, res));
 router.get('/:id', (req, res) => userController.getUserById(req, res));
 router.delete('/:id', (req, res) => userController.deleteUserById(req, res));
