@@ -7,10 +7,12 @@ A starter project to build a REST API with Node.js, Express, and MySQL, implemen
 ## Project Structure
 
 - **config/**: Database and environment configuration.
+- **migrations/**: JS files for migrations of knex.
 - **src/routes/**: API route definitions.
 - **src/controllers/**: Controllers that handle requests and call services.
 - **src/services/**: Business logic and processing.
 - **src/models/**: Database access layer.
+- **src/middlewares/** Middlewares used on the project.
 - **utils/**: General utilities (e.g., common helper functions).
 - **app.js**: Entry point that initializes the app, database, and routes.
 
