@@ -63,8 +63,17 @@ class UserService {
     }
 
     async deleteUserById(id) {
+
+        const existingUser = await this.userRepository.getUserById(id);
+        if (existingUser === null) { // user does not exists
+            return {status: 400, message: "User does not exists"};
+        }
+        
         let success = await this.userRepository.deleteUserById(id);
-        return success;
+        if (success) {
+            return {status: 200, message: "User deleted succesfully"};
+        }
+        return {status: 500, message: "User could not be deleted"};
     }
 
 }
