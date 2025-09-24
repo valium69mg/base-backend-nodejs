@@ -14,13 +14,16 @@ class UserService {
     async createUser(user) {
         const existingUser = await this.userRepository.getUserByEmail(user.email);
         if (existingUser != null) { // user exists
-            return false;
+            return {status: 400, message: "User already exists"};
         }
         const hashedPassword = await bcrypt.hash(user.password, saltRounds);
         user.password = hashedPassword;
         user.createdAt = new Date();
         let success = await this.userRepository.createUser(user);
-        return success;
+        if (success) {
+            return {status: 200, message: "User registered succesfully"};;
+        }
+        return {status: 500, message: "User could not be saved"};
     }
 
     async updateUser(user) {

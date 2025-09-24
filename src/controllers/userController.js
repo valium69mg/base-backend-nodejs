@@ -11,13 +11,10 @@ class UserController {
         try {
             const userData = req.body;
 
-            const success = await this.userService.createUser(userData);
+            const response = await this.userService.createUser(userData);
 
-            if (success) {
-                return res.status(201).json({ message: 'User created successfully' });
-            } else {
-                return res.status(400).json({ message: 'User creation failed' });
-            }
+            return res.status(response.status).json(response);
+
         } catch (error) {
             console.error('Error:', error);
             return res.status(500).json({ message: 'Internal server error' });
